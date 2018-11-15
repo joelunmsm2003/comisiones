@@ -136,10 +136,10 @@ class PolizaAdmin(admin.ModelAdmin):
 #     list_editable = ('nombre',)
 
 
-# @admin.register(TipoAgente)
-# class TipoAgenteAdmin(admin.ModelAdmin):
-#     list_display = ('id','nombre')
-#     list_editable = ('nombre',)
+@admin.register(Cliente)
+class ClienteAdmin(admin.ModelAdmin):
+    list_display = ('id','nombre')
+    list_editable = ('nombre',)
 
     
 def bulksms(audience):

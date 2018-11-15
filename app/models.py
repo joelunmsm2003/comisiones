@@ -381,9 +381,11 @@ class Cliente(models.Model):
     conyuge = models.CharField(max_length=1000,blank=True, null=True)
     edad_conyuge = models.IntegerField(blank=True, null=True)
     fecha_nacimiento_conyuge = models.DateField(blank=True, null=True)
-    upload_csv=models.BooleanField(default=0)
-    upload_csv_julio_enero_2019=models.BooleanField(default=0)
-    upload_ene_jul_2019_ecu=models.BooleanField(default=0)
+    upload_csv=models.CharField(max_length=1000,blank=True, null=True)
+    upload_csv_julio_enero_2019=models.CharField(max_length=1000,blank=True, null=True)
+    upload_ene_jul_2019_ecu=models.CharField(max_length=1000,blank=True, null=True)
+    periodopos = models.ForeignKey('Periodopos', models.DO_NOTHING, db_column='periodopos',blank=True, null=True)
+    
     
 
     class Meta:
