@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+
+
+  {% block content %}
+
+  <table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th scope="col">Codigo</th>
+      <th scope="col">Agente</th>
+      <th scope="col">Cliente</th>
+      <th scope="col">Numero Poliza</th>
+    </tr>
+  </thead>
+
+    <tbody>
+  {% for a in poliza %}
+
+
+    <tr>
+
+        <td><label><input type="checkbox" value=""></label></td>
+        <td>{{a.codigo}}</td>
+        <td>{{a.agente}}</td>
+        <td>{{a.cliente}}</td>
+        <td>{{a.numero_poliza}}</td>
+        <td>{{a.fecha_emision}}</td>
+        <td>{{a.fecha}}</td>
+        <td>{{a.producto}}</td>
+    </tr>
+
+
+
+
+    {% endfor %}
+    </tbody>
+
+   </table>
+
+  {% endblock %}
+
+
+

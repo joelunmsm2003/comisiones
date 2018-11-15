@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+
+
+  {% block content %}
+
+
+  <a href="http://www.forosdelweb.com/f4/como-abrir-ventana-nueva-pequena-pinchar-enlace-1035579/#post4362645" target="_blank" onclick="window.open(this.href, this.target, 'width=300,height=400'); return false;">Link popup</a>
+ 
+
+  <table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th scope="col">ID</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Telefono</th>
+      <th scope="col">Direccion</th>
+    </tr>
+  </thead>
+
+    <tbody>
+  {% for a in agentes %}
+
+
+    <tr>
+
+
+       <td><label><input type="checkbox" value=""></label></td>
+      <th><a href="/agente/{{a.id}}">{{a.id}}</a></th>
+      <td>{{a.nombre}}</td>
+      <td>{{a.telefono}}</td>
+      <td>{{a.direccion}}</td>
+    </tr>
+
+  
+
+    {% endfor %}
+    </tbody>
+
+   </table>
+
+  {% endblock %}
+
+
+

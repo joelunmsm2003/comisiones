@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+
+
+  {% block content %}
+
+
+<script type="text/javascript" src='/static/js/polizanueva.js'></script>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+
+<div class='container'>
+ <div style='height: 30px;'></div>
+
+
+
+<h3>Polizas Efectivas</h3>
+
+
+<div id="container"></div>
+
+</div>
+
+
+  <div style='height: 30px;'></div>
+
+
+
+
+
+
+
+<script type="text/javascript">
+  
+Highcharts.chart('container', {
+
+    title: {
+        text: 'Cantidad de polizas efectivas, 2010-2016'
+    },
+
+    subtitle: {
+        text: 'Source: Xiencias.com'
+    },
+
+    yAxis: {
+        title: {
+            text: 'Numero de Polizas'
+        }
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        series: {
+            label: {
+                connectorAllowed: false
+            },
+            pointStart: 2010
+        }
+    },
+
+    series: [{
+        name: 'Vida',
+        data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+    }, {
+        name: 'Salud',
+        data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+    }, {
+        name: 'Inversiones',
+        data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
+    }, {
+        name: 'Capital',
+        data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
+    }, {
+        name: 'Other',
+        data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
+    }],
+
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                }
+            }
+        }]
+    }
+
+});
+
+
+</script>
+ 
+
+<div class="modal fade bd-example-modal-sm" id='myModal' tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Tipo de Poliza</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          
+      <ul class="list-group">
+        <li class="list-group-item" style='cursor:pointer;' onclick="window.location='/polizaexistente/';" ng-mouseover='activo=1' ng-mouseleave='activo=0' ng-class="{'active': activo==1}">Poliza Existente</li>
+
+       
+        <li class="list-group-item" style='cursor:pointer;' onclick="window.location='/polizanueva/';" ng-mouseover='activo_1=1' ng-mouseleave='activo_1=0' ng-class="{'active': activo_1==1}">Poliza Nueva</li>
+
+      </ul>
+
+
+
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+
+
+
+  {% endblock %}
+
+
+  <style type="text/css">
+    
+.list-group-item:hover{
+
+  background: #123 !important;
+
+
+}
+
+
+  </style>
+

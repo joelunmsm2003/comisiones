@@ -1,0 +1,365 @@
+{% extends 'base.html' %}
+
+
+
+  {% block content %}
+
+
+<script type="text/javascript" src='/static/js/agente.js'></script>
+
+
+<!--Modal-->
+<div class="modal fade bd-example-modal-sm" id='myModal' tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Tipo de Poliza</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          
+      <ul class="list-group">
+        <li class="list-group-item" style='cursor:pointer;' onclick="window.location='/polizaexistente/';" ng-mouseover='activo=1' ng-mouseleave='activo=0' ng-class="{'active': activo==1}">Poliza Existente</li>
+
+       
+        <li class="list-group-item" style='cursor:pointer;' onclick="window.location='/polizanueva/';" ng-mouseover='activo_1=1' ng-mouseleave='activo_1=0' ng-class="{'active': activo_1==1}">Poliza Nueva</li>
+
+      </ul>
+
+
+
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+<style type="text/css">
+  
+  .preload{
+
+      background: url(http://www.anassia.com/wp-content/uploads/2017/06/preloader1.gif) no-repeat;
+    z-index: 100000000;
+    height: 21em;
+    width: 100%;
+    top: 1px;
+    /* left: 21em; */
+    position: absolute;
+
+
+  }
+</style>
+
+<div class='preload'>
+</div>
+<div class='container' style='display: none;'>
+
+  <div style='height: 20px;'></div>
+
+
+
+
+  <!--Buscador-->
+<div class='row'>
+<div class="col-md-4">
+<h3>Agentes</h3>
+<input type="text" name="" ng-model='search'  class='form-control' placeholder='Ingrese nombre de agente'>
+
+<ul class="list-group">
+<li class="list-group-item"  ng-click='_detalleagente(p.id)' ng-mouseover='activo_1=1' ng-mouseleave='activo_1=0' ng-class="{'active': activo_1==1}" ng-show='search.length>0' ng-repeat="p in agentes|filter:search">
+
+
+
+ <!--   <img src="http://xiencias.com:3000/{[{p.photo}]}" style='border: 2px solid #fff;
+    border-radius: 50%;
+    height: 50px;margin-right: 2px;'> -->
+
+  {[{p.nombre}]} {[{p.apellidos}]} </li>
+
+
+
+</ul> 
+</div>
+
+
+<div class='col-md-4 ' >
+
+   <img class='animated flipInX' src="http://xiencias.com:3000/{[{detalleagente.photo}]}" style='border: 2px solid #fff;
+    border-radius: 50%;
+    height: 100px;'>
+</div>
+</div>
+
+  <div style='height: 30px;'></div>
+
+<!---Poliza-->
+
+
+
+
+  <div class='row'>
+
+
+
+
+
+    <!--Informacion personal-->
+    <div class='col-md-4' ng-show='detalleagente'>
+
+
+
+             <form  >
+          <h5>Informacion personal</h5>
+         <div style='height: 10px;'></div>
+
+          
+
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-3 col-form-label">Nombre</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" ng-model='detalleagente.nombre' id="inputEmail3" placeholder="Nombre">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-3 col-form-label">Apellido</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" ng-model='detalleagente.apellidos' id="inputPassword3" placeholder="Apellido">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-3 col-form-label">Fecha Nacimiento</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" ng-model='detalleagente.fecha_nacimiento' id="inputPassword3" placeholder="Apellido">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-3 col-form-label">DNI</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" ng-model='detalleagente.dni' id="inputPassword3" placeholder="DNI">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-3 col-form-label">Telefono</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" ng-model='detalleagente.telefono' id="inputPassword3" placeholder="Telefono">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-3 col-form-label">Fijo</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" ng-model='detalleagente.telefono_1' id="inputPassword3" placeholder="Telefono">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-3 col-form-label">Contacto</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" ng-model='detalleagente.contacto_emergencia' id="inputPassword3" placeholder="Contacto emergencia">
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-3 col-form-label">Dirección</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" ng-model='detalleagente.direccion' id="inputPassword3" placeholder="Dirección">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-3 col-form-label">Correo </label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" ng-model='detalleagente.correo_personal' id="inputPassword3" placeholder="Correo Personal">
+            </div>
+          </div>
+
+       
+
+          
+
+
+          
+          <div class="form-group row">
+            <div class="offset-sm-2 col-sm-10">
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+          </div>
+        </form>
+
+    </div>
+    
+    <!--Informacion comercial-->
+
+    <div class='col-md-4' ng-show='detalleagente'>
+
+       <form>
+          <h5>Informacion Comercial</h5>
+          <div style='height: 10px;'></div>
+
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-3 col-form-label">Nivel</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" disabled ng-model='detalleagente.nivel' id="inputEmail3" placeholder="Tipo Agente">
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-3 col-form-label">Tipo</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" disabled ng-model='detalleagente.tipo_agente' id="inputEmail3" placeholder="Tipo Agente">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-3 col-form-label">Empresa</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" disabled ng-model='detalleagente.empresa' id="inputEmail3" placeholder="Capital">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-3 col-form-label">Movil</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" disabled ng-model='detalleagente.movil_contacto' id="inputEmail3" placeholder="Movil">
+            </div>
+          </div>
+
+            <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-3 col-form-label">RUC</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" disabled ng-model='detalleagente.ruc' id="inputEmail3" placeholder="Ruc">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-3 col-form-label">Correo</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" disabled ng-model='detalleagente.correo_capital' id="inputEmail3" placeholder="Ruc">
+            </div>
+          </div>
+
+
+
+          <div ng-if='detalleagente.agente_asigna[0].country_manager!="Sin Asignar"' class="form-group row">
+            <label for="inputEmail3" class="col-sm-6 col-form-label">Country Manager</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" disabled ng-model='detalleagente.agente_asigna[0].country_manager' id="inputEmail3" placeholder="Movil">
+            </div>
+          </div>
+
+          <div ng-if='detalleagente.agente_asigna[0].bussiness_partner!="Sin Asignar"' class="form-group row">
+            <label for="inputEmail3" class="col-sm-6 col-form-label">Bussiness Partner:</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" disabled ng-model='detalleagente.agente_asigna[0].bussiness_partner' id="inputEmail3" placeholder="Movil">
+            </div>
+          </div>
+
+          <div ng-if='detalleagente.agente_asigna[0].relation_ship_director!="Sin Asignar"' class="form-group row">
+            <label for="inputEmail3" class="col-sm-6 col-form-label">Relation Ship Director</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" disabled ng-model='detalleagente.agente_asigna[0].relation_ship_director' id="inputEmail3" placeholder="Movil">
+            </div>
+          </div>
+
+          <div ng-if='detalleagente.agente_asigna[0].relation_management!="Sin Asignar"' class="form-group row">
+            <label for="inputEmail3" class="col-sm-6 col-form-label">Relation Management</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" disabled ng-model='detalleagente.agente_asigna[0].relation_management' id="inputEmail3" placeholder="Movil">
+            </div>
+          </div>
+
+          <div ng-if='detalleagente.agente_asigna[0].relation_management_senior!="Sin Asignar"' class="form-group row">
+            <label for="inputEmail3" class="col-sm-6 col-form-label">Relation Management Senior</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" disabled ng-model='detalleagente.agente_asigna[0].relation_management_senior' id="inputEmail3" placeholder="Movil">
+            </div>
+          </div>
+
+
+          <div ng-if='detalleagente.agente_asigna[0].private_client!="Sin Asignar"' class="form-group row">
+            <label for="inputEmail3" class="col-sm-6 col-form-label">Private Client</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" disabled ng-model='detalleagente.agente_asigna[0].private_client' id="inputEmail3" placeholder="Movil">
+            </div>
+          </div>
+
+          <div ng-if='detalleagente.agente_asigna[0].private_client_senior!="Sin Asignar"' class="form-group row">
+            <label for="inputEmail3" class="col-sm-6 col-form-label">Private Client Senior</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" disabled ng-model='detalleagente.agente_asigna[0].private_client_senior' id="inputEmail3" placeholder="Movil">
+            </div>
+          </div>
+
+        
+
+
+          
+
+          <div class="form-group row">
+            <div class="offset-sm-2 col-sm-10">
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+          </div>
+        </form>
+
+
+    
+
+
+
+
+    </div>
+     <!--Polizas-->
+    <div class='col-md-4' ng-show='detalleagente'>
+
+
+
+          <h5>Polizas</h5>
+          <div style='height: 10px;'></div>
+<ul class="list-group">
+<li class="list-group-item"  ng-repeat="p in detalleagente.polizas">
+  
+
+  {[{p.fecha}]} 
+  <strong>Nº </strong>{[{p.numero_poliza}]}
+</li>
+</ul>
+
+
+
+    </div>
+
+
+  </div>
+
+
+
+</div>
+
+
+
+
+  {% endblock %}
+
+
+  <style type="text/css">
+    
+.list-group-item:hover{
+
+  background: #123 !important;
+
+
+}
+
+
+
+  </style>
+

@@ -1,0 +1,63 @@
+
+{% extends 'base.html' %}
+
+
+
+
+
+ {% block content %}
+
+
+<div style="height:10px;"></div>
+
+ <nav class="navbar navbar-expand-lg navbar-light bg-light navega">
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Agentes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">{{agente.nombre}}</a>
+      </li>
+      
+    </ul>
+  </div>
+</nav>
+
+
+<div style="height:10px;"></div>
+
+                      <form action='/agrega_agente/' method='POST'>
+
+                        {% csrf_token %}
+	                   {% for field in form %}
+
+
+                          <div class="form-group row">
+                              
+
+                              <div class="col-sm-3 form-control-label">{{ field.label_tag }}</div>
+
+                              <div class="col-sm-4">{{ field.errors }} {{ field }}
+
+                              {% if field.help_text %}
+                              <p class="help">{{ field.help_text|safe }}</p>
+                              {% endif %}
+
+                              </div>
+                               
+                              
+                              
+                          </div>
+
+
+                       {% endfor %}
+
+                       <button type='submit' class='btn btn-primary'>Agregar</button>
+
+                      </form>
+
+  {% endblock %}

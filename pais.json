@@ -1,0 +1,1 @@
+[{"model": "app.pais", "pk": 1, "fields": {"nombre": "Colombia"}}, {"model": "app.pais", "pk": 2, "fields": {"nombre": "Ecuador"}}, {"model": "app.pais", "pk": 4, "fields": {"nombre": "Estados Unidos"}}, {"model": "app.pais", "pk": 5, "fields": {"nombre": "Peru"}}, {"model": "app.pais", "pk": 6, "fields": {"nombre": "Bolivia"}}]

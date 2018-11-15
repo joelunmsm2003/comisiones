@@ -1,0 +1,90 @@
+
+
+
+  <div id="root"></div>
+
+
+
+  <div style='height:10px;'></div>
+  <a href='/agrega_agente/' class="btn btn-primary">Agregar Agente</a>
+
+  <div style='height:10px;'></div>
+
+  <table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th scope="col">ID</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Telefono</th>
+      <th scope="col">Direccion</th>
+      <th scope="col">Equipo</th>
+    </tr>
+  </thead>
+
+    <tbody>
+  {% for a in agentes %}
+
+
+    <tr>
+
+
+       <td><label><input type="checkbox" value=""></label></td>
+      <th><a href="/agente/{{a.id}}">{{a.id}}</a></th>
+      <td>{{a.nombre}}</td>
+      <td>{{a.telefono}}</td>
+      <td>{{a.direccion}}</td>
+        <td>{{a.equipo}}</td>
+    </tr>
+
+  
+
+    {% endfor %}
+    </tbody>
+
+   </table>
+
+
+<script type="text/babel">
+class Agentes extends React.Component {
+    render() {
+        return (
+
+                <table className='table'> <thead>
+                <tr>
+                <th></th>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Direccion</th>
+                <th scope="col">Equipo</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for a in agentes %}
+                <tr><td>{{a.nombre}}</td>
+                <td>{{a.telefono}}</td></tr>
+                {% endfor %}
+
+                </tbody></table>
+
+    );
+    
+    }
+}
+
+
+ReactDOM.render(
+    <Agentes />,
+    document.getElementById('root')
+);
+
+</script>
+
+
+
+  {% endblock %}
+
+
+

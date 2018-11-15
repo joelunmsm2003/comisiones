@@ -1,0 +1,345 @@
+{% extends 'base.html' %}
+
+
+
+  {% block content %}
+
+
+<script type="text/javascript" src='/static/js/polizaexistente.js'></script>
+
+
+
+
+  <div style='height: 30px;'></div>
+
+
+
+<div class="modal fade bd-example-modal-sm" id='myModal' tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Tipo de Poliza</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          
+          <ul class="list-group">
+        <li class="list-group-item" style='cursor:pointer;' onclick="window.location='/polizaexistente/';" ng-mouseover='activo=1' ng-mouseleave='activo=0' ng-class="{'active': activo==1}">Poliza Existente</li>
+
+       
+        <li class="list-group-item" style='cursor:pointer;' onclick="window.location='/polizanueva/';" ng-mouseover='activo_1=1' ng-mouseleave='activo_1=0' ng-class="{'active': activo_1==1}">Poliza Nueva</li>
+
+      </ul>
+
+
+
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade bd-example-modal-md" id='buscapolizaexistente' tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Poliza Existente / Buscar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" ng-model="search"  placeholder="Ingrese No Poliza, DNI, ID Cliente" aria-label="Recipient's username" aria-describedby="basic-addon2">
+          
+        </div>
+
+        <ul class="list-group" >
+
+
+
+          
+        <li style='cursor:pointer;' ng-mouseover='p.activo=1' ng-mouseleave='p.activo=0' class="list-group-item" ng-repeat="p in polizas|filter:search" ng-class="{'active': p.activo==1}" ng-click='irapoliza(p)'>
+
+          <div class='row'>
+
+          <div class='col-md-2'>{[{p.numero_poliza}]} 
+          </div>
+
+
+          <div class='col-md-10'>{[{p.cliente__nombre}]}
+          </div>
+
+
+          
+
+
+
+        </li>
+        
+
+        </ul>
+
+      </div>
+
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+  .agentes{
+
+    background-color: lightblue;
+
+    height: 340px;
+    overflow: scroll;
+  }
+</style>
+
+
+
+<!---Poliza-->
+
+<div class='container' style='display: none;'>
+
+
+  <h2>Datos de Poliza {[{datosdepoliza.numero_poliza}]}</h2>
+
+
+      <div class='row' style='border: 1px solid #d1d9e0;
+    border-radius: 5px;
+    padding: 6px; padding-top: 11px;' >
+
+      <div class='col-md-2'><h4>Producto </h4></div>
+
+      <div class='col-md-4'>{[{datosdepoliza.producto__ramo_compania_producto__ramo__nombre}]}  {[{datosdepoliza.producto__ramo_compania_producto__compania__nombre}]}  {[{datosdepoliza.producto__ramo_compania_producto__producto__nombre}]}  </div>
+
+      <div class='col-md-2'><h4>Agente </h4></div>
+
+      <div class='col-md-4'><img class='img-circle' style='width: 35px; border-radius: 50%; margin-right: 14px;' src='http://xiencias.com:3000/{[{datosdepoliza.cliente__agente__photo}]}'>{[{datosdepoliza.cliente__agente__nombre}]} {[{datosdepoliza.cliente__agente__apellidos}]}</div>
+      
+
+     
+    </div>
+
+
+    <!-- <div class='row' style='border: 1px solid #d1d9e0;
+    border-radius: 5px;
+    padding: 6px;' >
+
+
+
+   
+
+    <div class="col-md-4" ><h4>Producto</h4> {[{datosdepoliza.producto__ramo_compania_producto__ramo__nombre}]}  {[{datosdepoliza.producto__ramo_compania_producto__compania__nombre}]}  {[{datosdepoliza.producto__ramo_compania_producto__producto__nombre}]} 
+    </div>
+
+     
+
+    <div class="col-md-4" > <h4>Agente</h4><img class='img-circle' style='width: 35px; border-radius: 50%; margin-right: 14px;' src='http://xiencias.com:3000/{[{datosdepoliza.cliente__agente__photo}]}'>{[{datosdepoliza.cliente__agente__nombre}]} {[{datosdepoliza.cliente__agente__apellidos}]}  
+    </div>
+
+   
+
+  </div> -->
+
+
+  <div style='height: 10px;'></div>
+
+
+  <div class='row' style='border: 1px solid #d1d9e0;
+    border-radius: 5px;
+    padding: 6px; padding-top: 11px;' >
+
+
+
+    <div class="col-md-3"><h4>Datos de Cliente  </h4>
+    </div>
+
+    <div class="col-md-3"><strong>Nombres:</strong> {[{datosdepoliza.cliente__nombre}]} {[{datosdepoliza.cliente.cliente__apellidos}]}
+    </div>
+
+    <div class="col-md-3"><strong>DNI: </strong>{[{datosdepoliza.cliente__dni}]}  
+    </div>
+
+    <div class="col-md-3"><strong>Telefono:</strong>{[{datosdepoliza.cliente__telefono}]}  
+    </div>
+
+  </div>
+
+	
+
+  <div style='height: 10px;'></div>
+
+
+<div class='row' style='padding: 1em;
+    border: 1px solid #d2d9e0;
+    border-radius: 8px;'>
+
+
+ 
+
+  <div class='col-md-4'>
+
+
+    <h4>Polizas</h4>
+
+    <form>
+
+  <div class="form-group row no-gutters">
+    <label for="staticEmail" class="col-sm-6 col-form-label">Numero de Poliza</label>
+    <div class="col-sm-6">
+      <input type="text"  class="form-control" id="staticEmail" >
+    </div>
+  </div>
+
+   <div class="form-group row no-gutters">
+    <label for="staticEmail" class="col-sm-6 col-form-label">Fecha Envio</label>
+    <div class="col-sm-6">
+      <input type="datetime"  class="form-control" id="staticEmail" >
+    </div>
+  </div>
+
+  <div class="form-group row no-gutters">
+    <label for="staticEmail" class="col-sm-6 col-form-label">Fecha Recibido</label>
+    <div class="col-sm-6">
+      <input type="datetime"  class="form-control" id="staticEmail" >
+    </div>
+  </div>
+
+   <div class="form-group row no-gutters">
+    <label for="staticEmail" class="col-sm-6 col-form-label">Fecha Aprobacion</label>
+    <div class="col-sm-6">
+      <input type="datetime"  class="form-control" id="staticEmail" >
+    </div>
+  </div>
+
+  <div class="form-group row no-gutters">
+    <label for="staticEmail" class="col-sm-6 col-form-label">Fecha Renovacion</label>
+    <div class="col-sm-6">
+      <input type="datetime"  class="form-control" id="staticEmail" >
+    </div>
+  </div>
+
+
+
+  </div>
+
+
+   <div class='col-md-4'>
+
+
+    <h4>Adicionales</h4>
+
+  
+
+  <div class="form-group row no-gutters">
+    <label for="staticEmail" class="col-sm-6 col-form-label">Plan</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="staticEmail" >
+    </div>
+  </div>
+
+   <div class="form-group row no-gutters">
+    <label for="staticEmail" class="col-sm-6 col-form-label">Años de aporte</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="staticEmail" >
+    </div>
+  </div>
+
+   <div class="form-group row no-gutters">
+    <label for="staticEmail" class="col-sm-6 col-form-label">Deducibles</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="staticEmail" >
+    </div>
+  </div>
+  
+
+
+  </div>
+
+  <div class='col-md-4'>
+
+
+
+    <h4>Pagos</h4>
+
+    <form>
+
+  <div class="form-group row no-gutters">
+    <label for="staticEmail" class="col-sm-6 col-form-label">Total</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="staticEmail" >
+    </div>
+  </div>
+
+   <div class="form-group row no-gutters">
+    <label for="staticEmail" class="col-sm-6 col-form-label">Comision</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="staticEmail" >
+    </div>
+  </div>
+
+    <div class="form-group row no-gutters">
+    <label for="staticEmail" class="col-sm-6 col-form-label">Prima</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="staticEmail" >
+    </div>
+  </div>
+
+  <div class="form-group row no-gutters">
+    <label for="staticEmail" class="col-sm-6 col-form-label">Forma de Pago</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" id="staticEmail" >
+    </div>
+  </div>
+
+ </div>
+
+
+
+
+  <div class='col-md-offset-3'><button type="submit" class="btn btn-lg btn-primary" ng-click='guardarpoliza()'>Guardar</button></div>
+</form>
+
+ 
+
+
+
+</div>
+
+</div>
+
+
+
+
+  {% endblock %}
+
+
+  <style type="text/css">
+    
+.list-group-item:hover{
+
+  background: #123 !important;
+
+
+}
+
+
+  </style>
+

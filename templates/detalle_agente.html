@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+
+
+  {% block detalleagente %}
+
+
+<div style="height:10px;"></div>
+
+
+                    <form action='/detalle_agente/{{agente}}' method='POST'>
+
+                      {% csrf_token %}
+
+	                   {% for field in form %}
+
+
+                          <div class="form-group row">
+                              
+
+                              <div class="col-sm-2 form-control-label">{{ field.label_tag }}</div>
+
+                              <div class="col-sm-4">{{ field.errors }} {{ field }}
+
+                              {% if field.help_text %}
+                              <p class="help">{{ field.help_text|safe }}</p>
+                              {% endif %}
+
+                              </div>
+                               
+                              
+                              
+                          </div>
+
+
+                       {% endfor %}
+
+                      <button type='submit' class='btn btn-primary'>Actualizar</button>
+
+
+                    </form>
+
+
+  {% endblock %}

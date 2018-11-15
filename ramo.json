@@ -1,0 +1,1 @@
+[{"model": "app.ramo", "pk": 1, "fields": {"nombre": "Vida"}}, {"model": "app.ramo", "pk": 2, "fields": {"nombre": "Salud"}}, {"model": "app.ramo", "pk": 3, "fields": {"nombre": "Investments"}}, {"model": "app.ramo", "pk": 4, "fields": {"nombre": "Ramos Generales"}}, {"model": "app.ramo", "pk": 5, "fields": {"nombre": "CFP"}}]
