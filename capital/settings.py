@@ -33,7 +33,7 @@ SECRET_KEY = 'm0_d=pl8(mdv*2ja0q3b&t9arbm#3*)eq$z-#yi@3g8(x&skb@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 STATICFILES_DIRS = (
     

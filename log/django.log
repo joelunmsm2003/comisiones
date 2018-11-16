@@ -2981,3 +2981,30 @@ UnboundLocalError: local variable 'context' referenced before assignment
 2018-11-14 22:34:49,251 [WARNING]- Not Found: /favicon.ico
 2018-11-14 22:34:58,937 [WARNING]- Not Found: /comisiones
 2018-11-15 16:14:42,134 [WARNING]- Not Found: /admin/app/producto
+2018-11-15 16:37:52,024 [WARNING]- Not Found: /
+2018-11-15 16:37:52,708 [WARNING]- Not Found: /favicon.ico
+2018-11-15 22:54:50,164 [ERROR]- Internal Server Error: /admin/login/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/exception.py", line 42, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 249, in _legacy_get_response
+    response = self._get_response(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 172, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "/usr/local/lib/python2.7/dist-packages/django/urls/resolvers.py", line 270, in resolve
+    for pattern in self.url_patterns:
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/urls/resolvers.py", line 313, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/usr/local/lib/python2.7/dist-packages/django/urls/resolvers.py", line 306, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/comisiones/capital/urls.py", line 6, in <module>
+    from app.views import *
+  File "/home/comisiones/app/views.py", line 23, in <module>
+    from jwt_auth.compat import json
+ImportError: No module named jwt_auth.compat
